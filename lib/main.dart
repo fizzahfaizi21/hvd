@@ -160,3 +160,25 @@ class Confetti {
     angle += 0.1;
   }
 }
+
+class ConfettiPainter extends CustomPainter {
+  final List<Confetti> confetti;
+
+  ConfettiPainter(this.confetti);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    for (var particle in confetti) {
+      paint.color = particle.color;
+      canvas.drawCircle(
+        Offset(particle.x, particle.y),
+        particle.size,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
